@@ -27,15 +27,24 @@ def find_sales():
     """
     find sales  input from the user.
     """
-    print("Please enter sales data from the last market.")
-    print("Data should be six numbers, separated by commas.")
-    print("Example: 10,20,30,40,50,60\n")
+    #while loop untill correct value is intered
+    while True:
+       print("Please enter sales data from the last market.")
+       print("Data should be six numbers, separated by commas.")
+       print("Example: 10,20,30,40,50,60\n")
 
-    user_sale_data = input("Enter your data here: ")
+       user_sale_data = input("Enter your data here: ")
 
-#To get the broken up values as a list use split() method
-    sale_data = user_sale_data.split(",")
-    validate_find_sales(sale_data)
+        #To get the broken up values as a list use split() method
+       sale_data = user_sale_data.split(",")
+
+       if validate_find_sales(sale_data):
+           print("valid data")
+           break
+    return sale_data   
+       
+
+
 
 #to validate a sales data
 def validate_find_sales(values):
@@ -52,7 +61,8 @@ def validate_find_sales(values):
             )
     except ValueError as e:
         print(f"invalid data {e}, please try again.")
- 
+        return False
+    
+    return True
 
-
-find_sales()
+datas = find_sales()
