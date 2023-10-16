@@ -31,8 +31,26 @@ def find_sales():
     print("Data should be six numbers, separated by commas.")
     print("Example: 10,20,30,40,50,60\n")
 
-    data_sale = input("Enter your data here: ")
-    print(f"The data provided is {data_sale}")
+    user_sale_data = input("Enter your data here: ")
+
+#To get the broken up values as a list use split() method
+    sale_data = user_sale_data.split(",")
+    validate_find_sales(sale_data)
+
+#to validate a sales data
+def validate_find_sales(values):
+    """
+    change the string values to int and check if the values are 6 
+    """
+
+    try:
+        if len(values) != 6:
+            raise ValueError(
+                f"6 values are required  you provided {len(values)}"
+            )
+    except ValueError as e:
+        print(f"invalid data {e}, please try again.")
+ 
 
 
 find_sales()
