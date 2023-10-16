@@ -22,3 +22,17 @@ purchase = SHEET.worksheet('Purchase')
 allData = purchase.get_all_values()
 
 print(allData)
+
+def find_sales():
+    """
+    find sales  input from the user.
+    """
+    print("Please enter sales data from the last market.")
+    print("Data should be six numbers, separated by commas.")
+    print("Example: 10,20,30,40,50,60\n")
+
+    data_sale = input("Enter your data here: ")
+    print(f"The data provided is {data_sale}")
+
+
+find_sales()
