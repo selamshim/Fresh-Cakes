@@ -42,8 +42,10 @@ def validate_find_sales(values):
     """
     change the string values to int and check if the values are 6 
     """
+    print(values)
 
     try:
+        [int(value) for value in values]
         if len(values) != 6:
             raise ValueError(
                 f"6 values are required  you provided {len(values)}"
