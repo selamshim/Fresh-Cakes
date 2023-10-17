@@ -88,10 +88,15 @@ def calculate_Rremainder_data(Purchase_row):
     """
     print("Calculating surplus data...\n")
     stock = SHEET.worksheet("Stock").get_all_values()
+    #pull stock value from worksheet
     stock_row = stock[-1]
-    print(stock_row)
-
     
+    surplus_data = []
+    for stock, sales in zip(stock_row, Purchase_row):
+        surplus = int(stock) - sales
+        surplus_data.append(surplus)
+    return surplus_data    
+
  #wrap the main function of the program with man function
 def main():
     """
@@ -100,7 +105,9 @@ def main():
     data = find_sales()
     purchase_data = [int(num) for num in data]
     update_purchase_worksheet(purchase_data) 
-    calculate_Rremainder_data(purchase_data)  
+    calculate_Rremainder_data(purchase_data) 
+    new_surplus_data= calculate_Rremainder_data(purchase_data)
+    print(new_surplus_data)
 
 print("Welcome to Love Sandwiches Data Automation")
 main()   
