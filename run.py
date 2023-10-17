@@ -65,4 +65,17 @@ def validate_find_sales(values):
     
     return True
 
-datas = find_sales()
+#to update te purchase worksheet
+def update_purchase_worksheet(data):
+    """
+    Update sales worksheet, add new row with the list data provided
+    """
+
+    print("Updating sales worksheet...\n")
+    sales_worksheet = SHEET.worksheet("Purchase")
+    sales_worksheet.append_row(data)
+    print("Sales worksheet updated successfully.\n")
+
+data = find_sales()
+purchase_data = [int(num) for num in data]
+update_purchase_worksheet(purchase_data) 
