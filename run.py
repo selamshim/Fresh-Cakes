@@ -2,6 +2,8 @@
 # import gspraad library
 import gspread
 from google.oauth2.service_account import Credentials
+from pprint import pprint
+
 
 #the program has access to the following scope
 SCOPE = [
@@ -76,6 +78,29 @@ def update_purchase_worksheet(data):
     sales_worksheet.append_row(data)
     print("Sales worksheet updated successfully.\n")
 
-data = find_sales()
-purchase_data = [int(num) for num in data]
-update_purchase_worksheet(purchase_data) 
+def calculate_Rremainder_data(Purchase_row):
+    """
+    Compare sales with stock and calculate the surplus for each item type.
+
+    The surplus is defined as the sales figure subtracted from the stock:
+    - Positive surplus indicates waste
+    - Negative surplus indicates extra made when stock was sold out.
+    """
+    print("Calculating surplus data...\n")
+    stock = SHEET.worksheet("Stock").get_all_values()
+    stock_row = stock[-1]
+    print(stock_row)
+
+    
+ #wrap the main function of the program with man function
+def main():
+    """
+    Run all program func
+    """
+    data = find_sales()
+    purchase_data = [int(num) for num in data]
+    update_purchase_worksheet(purchase_data) 
+    calculate_Rremainder_data(purchase_data)  
+
+print("Welcome to Love Sandwiches Data Automation")
+main()   
