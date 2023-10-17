@@ -67,7 +67,7 @@ def validate_find_sales(values):
     
     return True
 
-#to update te purchase worksheet
+#to update the purchase worksheet
 def update_purchase_worksheet(data):
     """
     Update sales worksheet, add new row with the list data provided
@@ -78,7 +78,19 @@ def update_purchase_worksheet(data):
     sales_worksheet.append_row(data)
     print("Sales worksheet updated successfully.\n")
 
-def calculate_Rremainder_data(Purchase_row):
+#to update the Remainder worksheet
+def update_Remainder_worksheet(data):
+    """
+    Update sales worksheet, add new row with the list data provided
+    """
+
+    print("Updating Remainder worksheet...\n")
+    Remainder_worksheet = SHEET.worksheet("Remainder")
+    Remainder_worksheet.append_row(data)
+    print("Remainder worksheet updated successfully.\n")    
+    
+
+def calculate_Remainder_data(Purchase_row):
     """
     Compare sales with stock and calculate the surplus for each item type.
 
@@ -105,9 +117,9 @@ def main():
     data = find_sales()
     purchase_data = [int(num) for num in data]
     update_purchase_worksheet(purchase_data) 
-    calculate_Rremainder_data(purchase_data) 
-    new_surplus_data= calculate_Rremainder_data(purchase_data)
-    print(new_surplus_data)
+    calculate_Remainder_data(purchase_data) 
+    new_surplus_data= calculate_Remainder_data(purchase_data)
+    update_Remainder_worksheet(new_surplus_data)
 
 print("Welcome to Love Sandwiches Data Automation")
 main()   
