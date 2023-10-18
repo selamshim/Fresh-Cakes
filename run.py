@@ -66,6 +66,7 @@ def validate_find_sales(values):
         return False
     
     return True
+
 #update the worksheets
 def update_worksheet(data, worksheet):
     """
@@ -97,6 +98,22 @@ def calculate_Remainder_data(Purchase_row):
         Remainder_data.append(Remainder)
     return Remainder_data    
 
+def get_last_5_entries_sales():
+    """
+    Collects columns of data from sales worksheet, collecting
+    the last 5 entries for each sandwich and returns the data
+    as a list of lists.
+    """
+    sales = SHEET.worksheet("Purchase")
+
+    columns = []
+    for ind in range(1, 7):
+        #use col value method to access 1 column value
+        column = sales.col_values(ind)
+        columns.append(column[-5:])
+    pprint(columns)    
+
+
  #wrap the main function of the program with man function
 def main():
     """
@@ -108,6 +125,9 @@ def main():
     calculate_Remainder_data(purchase_data) 
     new_surplus_data= calculate_Remainder_data(purchase_data)
     update_worksheet(new_surplus_data, "Remainder")
+    
 
 print("Welcome to Love Sandwiches Data Automation")
-main()   
+#main()
+
+get_last_5_entries_sales()
