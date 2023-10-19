@@ -15,13 +15,6 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('Fresh-Cakes')
 
-#access the data in purchase cell workseet
-purchase = SHEET.worksheet('Purchase')
-
-#pull all values from purchase worksheet
-allData = purchase.get_all_values()
-
-
 #accept user name
 def enter_name():
     """
@@ -32,16 +25,22 @@ def enter_name():
     return user_name
      
 
+#access the data in purchase cell workseet
+purchase = SHEET.worksheet('Purchase')
+
+#pull all values from purchase worksheet
+allData = purchase.get_all_values()
+
 
 def find_sales():
     """
     find sales  input from the user.
     """
-    #while loop untill correct value is intered
+    #loop untill correct value is entered
     while True:
-       print(f"Hello {enter_name()}Please enter sales data from the last market.")
-       print("Data should be six numbers, separated by commas.")
-       print("Example: 10,20,30,40,50,60\n")
+       print(f"Hello {enter_name()} Please enter the ammount of cakes you have sold.")
+       print("You neeed to enter seven number, separated by commas.")
+       print("Example: 30,22,17,40,50,60,70\n")
 
        user_sale_data = input("Enter your data here:\n")
 
@@ -63,7 +62,7 @@ def validate_find_sales(values):
 
     try:
         [int(value) for value in values]
-        if len(values) != 6:
+        if len(values) != 7:
             raise ValueError(
                 f"6 values are required  you provided {len(values)}"
             )
@@ -104,19 +103,19 @@ def calculate_Remainder_data(Purchase_row):
         Remainder_data.append(Remainder)
     return Remainder_data    
 
-def get_last_5_entries_sales():
+def get_last_7_entries_Purchase():
     """
-    Collects columns of data from sales worksheet, collecting
+    find columns of data from Purchase worksheet, collecting
     the last 5 entries for each sandwich and returns the data
     as a list of lists.
     """
     sales = SHEET.worksheet("Purchase")
 
     columns = []
-    for ind in range(1, 7):
+    for ind in range(1, 8):
         #use col value method to access 1 column value
         column = sales.col_values(ind)
-        columns.append(column[-5:])
+        columns.append(column[-7:])
     return columns    
 
 def calculate_stock_data(data):
@@ -148,11 +147,11 @@ def main():
     new_surplus_data= calculate_Remainder_data(purchase_data)
     update_worksheet(new_surplus_data, "Remainder")
 
-    sales_columns = get_last_5_entries_sales()
+    sales_columns = get_last_7_entries_Purchase()
     stock_data = calculate_stock_data(sales_columns)
     update_worksheet(stock_data, "Stock")
 
     
 
-print("Welcome to Fresh-cakes cafe")
+print("Welcome, this is Fresh-cakes cafe")
 main()
