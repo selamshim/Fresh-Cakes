@@ -2,8 +2,6 @@
 # import gspraad library
 import gspread
 from google.oauth2.service_account import Credentials
-from pprint import pprint
-
 
 #the program has access to the following scope
 SCOPE = [
@@ -24,6 +22,16 @@ purchase = SHEET.worksheet('Purchase')
 allData = purchase.get_all_values()
 
 
+#accept user name
+def enter_name():
+    """
+    accept user name
+    """
+    user_name = input("Enter your name here:\n")
+
+    return user_name
+     
+
 
 def find_sales():
     """
@@ -31,11 +39,11 @@ def find_sales():
     """
     #while loop untill correct value is intered
     while True:
-       print("Please enter sales data from the last market.")
+       print(f"Hello {enter_name()}Please enter sales data from the last market.")
        print("Data should be six numbers, separated by commas.")
        print("Example: 10,20,30,40,50,60\n")
 
-       user_sale_data = input("Enter your data here: ")
+       user_sale_data = input("Enter your data here:\n")
 
         #To get the broken up values as a list use split() method
        sale_data = user_sale_data.split(",")
@@ -44,8 +52,6 @@ def find_sales():
            print("valid data")
            break
     return sale_data   
-       
-
 
 
 #to validate a sales data
@@ -134,6 +140,7 @@ def main():
     """
     Run all program func
     """
+    #print(f"hello {enter_name()} you can calculate the needed stock value above")
     data = find_sales()
     purchase_data = [int(num) for num in data]
     update_worksheet(purchase_data, "Purchase")
@@ -147,5 +154,5 @@ def main():
 
     
 
-print("Welcome to Love Sandwiches Data Automation")
+print("Welcome to Fresh-cakes cafe")
 main()
