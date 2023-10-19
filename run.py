@@ -31,7 +31,7 @@ purchase = SHEET.worksheet('Purchase')
 #pull all values from purchase worksheet
 allData = purchase.get_all_values()
 
-
+#this is from love-sandwith project 
 def find_sales():
     """
     find sales  input from the user.
@@ -64,7 +64,7 @@ def validate_find_sales(values):
         [int(value) for value in values]
         if len(values) != 7:
             raise ValueError(
-                f"6 values are required  you provided {len(values)}"
+                f"7 values are required  you provided {len(values)}"
             )
     except ValueError as e:
         print(f"invalid data {e}, please try again.")
@@ -88,9 +88,9 @@ def calculate_Remainder_data(Purchase_row):
     """
     Compare sales with stock and calculate the surplus for each item type.
 
-    The surplus is defined as the sales figure subtracted from the stock:
-    - Positive surplus indicates waste
-    - Negative surplus indicates extra made when stock was sold out.
+    The Remainder is defined as the Purchased value subtracted from the stock:
+    - Positive Remainder indicates waste
+    - Negative Remainder indicates extra made when Purchased is  sold out.
     """
     print("Calculating Remainder data...\n")
     stock = SHEET.worksheet("Stock").get_all_values()
@@ -105,9 +105,7 @@ def calculate_Remainder_data(Purchase_row):
 
 def get_last_7_entries_Purchase():
     """
-    find columns of data from Purchase worksheet, collecting
-    the last 5 entries for each sandwich and returns the data
-    as a list of lists.
+    find columns of 7 data from Purchase worksheet, 
     """
     sales = SHEET.worksheet("Purchase")
 
@@ -120,7 +118,7 @@ def get_last_7_entries_Purchase():
 
 def calculate_stock_data(data):
     """
-    Calculate the average stock for each item type, adding 10%
+    Calculate the average stock for each item type, adding 13%
     """
     print("Calculating stock data...\n")
     new_stock_data = []
@@ -128,7 +126,7 @@ def calculate_stock_data(data):
     for column in data:
         int_column = [int(num) for num in column]
         average = sum(int_column) / len(int_column)
-        stock_num = average * 1.1
+        stock_num = average * 1.3
         new_stock_data.append(round(stock_num))
 
     return new_stock_data
@@ -137,9 +135,9 @@ def calculate_stock_data(data):
  #wrap the main function of the program with man function
 def main():
     """
-    Run all program func
+    To Run all program function
     """
-    #print(f"hello {enter_name()} you can calculate the needed stock value above")
+
     data = find_sales()
     purchase_data = [int(num) for num in data]
     update_worksheet(purchase_data, "Purchase")
@@ -152,6 +150,6 @@ def main():
     update_worksheet(stock_data, "Stock")
 
     
-
-print("Welcome, this is Fresh-cakes cafe")
+print("Created by Selam Yigezu 2023\n")
+print("Welcome, This is Fresh-cakes cafe")
 main()
