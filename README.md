@@ -16,7 +16,7 @@
 
 
 ### Website Owner Goals
-- Deliver easy-to-use stock managment system 
+- Deliver easy-to-use stock managment system for cafe
 - calculate the amount of data needed for the next market and minimize waste
 - To save stock values on googel spread sheet
 
