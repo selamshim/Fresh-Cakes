@@ -1,4 +1,3 @@
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
 # import gspraad library
 import gspread
 from google.oauth2.service_account import Credentials
@@ -33,7 +32,7 @@ purchase = SHEET.worksheet('Purchase')
 allData = purchase.get_all_values()
 
 
-# this is from love-sandwith project
+# this function is from love-sandwith essential project
 def find_sales():
     """
     find sales  input from the user.
@@ -66,10 +65,10 @@ def validate_find_sales(values):
         [int(value) for value in values]
         if len(values) != 7:
             raise ValueError(
-                f"7 values are required  you provided {len(values)}"
+                f"7 values are required  you entered {len(values)}"
             )
     except ValueError as e:
-        print(f"invalid data {e}, please try again.")
+        print(f"invalid data {e}, please enter correct value again.")
         return False
 
     return True
@@ -84,18 +83,16 @@ def update_worksheet(data, worksheet):
     print(f"Updating {worksheet} worksheet...\n")
     worksheet_to_update = SHEET.worksheet(worksheet)
     worksheet_to_update.append_row(data)
-    print(f"{worksheet} worksheet updated successfully\n")
+    print(f"{worksheet} worksheet successfully updated\n")
 
 
 def calculate_Remainder_data(Purchase_row):
     """
-    Compare sales with stock and calculate the surplus for each item type.
+    substract sale from stock and calculate the Remainder for each item type.
 
-    The Remainder is defined as the Purchased value subtracted from the stock:
-    - Positive Remainder indicates waste
-    - Negative Remainder indicates extra made when Purchased is  sold out.
+    - Positive Remainder is remaining product while negative Remainder is extra made when Purchased is  sold out.
     """
-    print("Calculating Remainder data...\n")
+    print("Remainder data Calculating...\n")
     stock = SHEET.worksheet("Stock").get_all_values()
     # pull stock value from worksheet
     stock_row = stock[-1]
@@ -125,7 +122,7 @@ def calculate_stock_data(data):
     """
     Calculate the average stock for each item type, adding 13%
     """
-    print("Calculating stock data...\n")
+    print("stock data is calculating...\n")
     new_stock_data = []
 
     for column in data:
