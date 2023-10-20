@@ -21,7 +21,7 @@
 - To save stock values on googel spread sheet
 
 ### Target Audience
-- cafe owners 
+- for all cafe owners 
 
 
 ### User Expectations
