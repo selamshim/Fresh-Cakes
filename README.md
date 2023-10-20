@@ -1,7 +1,7 @@
 # Fresh Cakes
 (Developer: Selam Yigezu)
  The Fresh-cakes app is a simple app developed for a cake shop which accept the name of the person who manage the shop and accept the sold values and  calculate the amount of cakes which needs to be baked for the next market.
- ![Mockup image](assets/image/live.png)
+ ![Mockup image](assets/image/responsive.png)
  [Live Website](https://fresh-cakes-1092920ed094.herokuapp.com/)
 
 # User Experience (UX)
